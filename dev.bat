@@ -22,11 +22,12 @@ echo For real-time logs, run 'php artisan pail' in a separate terminal.
 echo Press Ctrl+C to stop all services.
 echo.
 
-REM Run all services with concurrently
-call npx concurrently -c "#93c5fd,#c4b5fd,#fb7185,#fdba74" ^
-    "php artisan serve" ^
+REM Run all services with concurrently (without logs service to avoid complexity)
+echo Starting Laravel development server, queue worker, and Vite...
+echo For logs, manually run: php artisan pail in a separate terminal.
+echo.
+call npx concurrently -c "#93c5fd,#c4b5fd,#fdba74" ^
+    "php artisan serve --host=127.0.0.1 --port=8000" ^
     "php artisan queue:listen --tries=1" ^
-    "echo [LOGS] Running on Windows. For detailed logs, check storage/logs/laravel.log or run: php artisan log:tail" ^
     "npm run dev" ^
-    --names=server,queue,logs,vite ^
-    --kill-others
+    --names=server,queue,vite

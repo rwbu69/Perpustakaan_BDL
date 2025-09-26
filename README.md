@@ -21,6 +21,87 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## Development Setup
+
+This project includes a cross-platform development script that works on Windows, macOS, and Linux.
+
+### Prerequisites
+
+- PHP 8.2+
+- Node.js and npm
+- Composer
+
+### Getting Started
+
+1. Install PHP dependencies:
+   ```bash
+   composer install
+   ```
+
+2. Install Node.js dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Copy the environment file and generate application key:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+4. Run the development server:
+   ```bash
+   composer run dev
+   ```
+
+This command will start:
+- Laravel development server (http://127.0.0.1:8000)
+- Queue worker
+- Log viewer (Laravel Pail)
+- Vite development server (http://localhost:5173)
+
+### Alternative Development Scripts
+
+You can also use platform-specific scripts:
+
+**Linux/macOS:**
+```bash
+./dev.sh
+```
+
+**Windows:**
+```cmd
+dev.bat
+```
+
+**Cross-platform (Composer):**
+```bash
+composer run dev
+```
+
+### Platform Notes
+
+- **Linux/macOS**: Full functionality including real-time log viewing with Laravel Pail
+- **Windows**: Laravel Pail may have limited functionality due to process control limitations. For real-time logs, run `php artisan pail` in a separate terminal
+
+### Manual Commands
+
+If you prefer to run services individually:
+
+```bash
+# Laravel server
+php artisan serve
+
+# Queue worker
+php artisan queue:listen --tries=1
+
+# Log viewer
+php artisan pail --timeout=0
+
+# Vite development server
+npm run dev
+```
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.

@@ -4,7 +4,7 @@
     @if(auth()->user()->isAdmin())
         <a href="{{ route('books.create') }}" class="btn btn-success">Tambah Buku Baru</a>
     @endif
-</div>ayouts.app')
+</div>
 
 @extends('layouts.app')
 
